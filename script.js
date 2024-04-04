@@ -1,6 +1,7 @@
 let nomeHotel = "Hotel Mugiwara";
 const senhaCorreta = "2678";
 let quartos = new Array(20).fill(false);
+var lista_hospedes = [];
 
 function boasVindas(nome) {
     alert(`Bem-vindo ao ${nomeHotel}, ${nome}. É um imenso prazer ter você por aqui!`);
@@ -25,7 +26,7 @@ function login() {
 
 function inicio() {
     var opcao = parseInt(prompt(`Escolha uma opção:
-    1. Verificar disponibilidade
+    1. Cadastrar hóspede
     2. Fazer reserva
     3. Verificar conta
     4. Sair`));
@@ -52,8 +53,31 @@ function inicio() {
 }
 
 function cadastro_hospedes() {
-;
+    let valorDiaria = parseFloat(prompt("Qual o valor padrão da diária?"));
+    let nomeHospede = prompt("Qual o nome do hóspede?");
+    let idadehospede = prompt("Qual a sua idade?")
+
+    if (idadehospede <= 6) {
+        alert(nomeHospede + " cadastrada(o) com sucesso. " + nomeHospede + " possui gratuidade." )
+    }
+    else if(idadehospede >= 60) {
+        alert(nomeHospede + " cadastrada(o) com sucesso. " + nomeHospede + " paga meia." )
+
+    }
+    else {
+        (nomeHospede + " cadastrada(o) com sucesso.")
+    }
+
+    if (isNaN(valorDiaria) || valorDiaria <= 0) {
+        alert("Valor inválido.");
+        ; 
+        return;
+    }
 }
+    
+
+
+
 
 function fazerReserva() {
     let valorDiaria = parseFloat(prompt("Qual o valor padrão da diária?"));
