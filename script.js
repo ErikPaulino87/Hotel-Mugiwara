@@ -25,66 +25,96 @@ function login() {
 }
 
 function inicio() {
-    var opcao = parseInt(prompt(`Escolha uma opção:
-    1. Cadastrar hóspede
-    2. Fazer reserva
-    3. Verificar conta
-    4. Sair`));
+    while (true) {
+        var opcao = parseInt(prompt(`Menu Principal:
+        1. Cadastro de Hóspedes
+        2. Fazer reserva
+        3. Verificar conta
+        4. Sair`));
 
-    switch (opcao) {
-        case 1:
-            cadastro_hospedes();
-            break;
-        case 2:
-            fazerReserva();
-            break;
-        case 3:
-            verificarConta();
-            break;
-        case 4:
-            alert(`Muito obrigado e até logo, ${nome}.`);
-            return;
-        default:
-            erro();
-            break;
+        switch (opcao) {
+            case 1:
+                menuCadastro();
+                break;
+            case 2:
+                fazerReserva();
+                break;
+            case 3:
+                verificarConta();
+                break;
+            case 4:
+                alert(`Muito obrigado e até logo, ${nome}.`);
+            default:
+                erro();
+                break;
+        }
     }
-
-    inicio(); 
 }
 
-function cadastro_hospedes() {
-    let valorDiaria = parseFloat(prompt("Qual o valor padrão da diária?"));
-    let nomeHospede = prompt("Qual o nome do hóspede?");
-    let idadehospede = prompt("Qual a sua idade?")
+function menuCadastro() {
+    while (true) {
+        let opcao = parseInt(prompt(`Menu de Cadastro:
+        1. Cadastrar hóspede
+        2. Pesquisar hóspede
+        3. Listar hóspedes
+        4. Voltar ao menu principal`));
 
-    if (idadehospede <= 6) {
-        alert(nomeHospede + " cadastrada(o) com sucesso. " + nomeHospede + " possui gratuidade." )
+        switch (opcao) {
+            case 1:
+                cadastrarHospede();
+                break;
+            case 2:
+                pesquisarHospede();
+                break;
+            case 3:
+                listarHospedes();
+                break;
+            case 4:
+                return;
+            default:
+                alert("Opção inválida. Por favor, escolha uma opção válida.");
+                break;
+        }
     }
-    else if(idadehospede >= 60) {
-        alert(nomeHospede + " cadastrada(o) com sucesso. " + nomeHospede + " paga meia." )
+}
 
-    }
-    else {
-        (nomeHospede + " cadastrada(o) com sucesso.")
-    }
-
-    if (isNaN(valorDiaria) || valorDiaria <= 0) {
-        alert("Valor inválido.");
-        ; 
+function cadastrarHospede() {
+    if (lista_hospedes.length >= 15) {
+        alert("Máximo de cadastros atingido.");
         return;
     }
+
+    let nomeHospede = prompt("Qual o nome do hóspede?");
+    lista_hospedes.push(nomeHospede);
+    alert(`Hóspede ${nomeHospede} cadastrado(a) com sucesso!`);
 }
-    
 
+function pesquisarHospede() {
+    let nomePesquisa = prompt("Qual o nome do hóspede?");
+    if (lista_hospedes.includes(nomePesquisa)) {
+        alert(`Hóspede ${nomePesquisa} foi encontrado(a)!`);
+    } else {
+        alert(`Hóspede ${nomePesquisa} não foi encontrado(a)`);
+    }
+}
 
-
+function listarHospedes() {
+    if (lista_hospedes.length === 0) {
+        alert("Não há hóspedes cadastrados.");
+    } else {
+        alert("Lista de hóspedes:");
+        lista_hospedes.forEach((hospede, index) => {
+            alert(`${index + 1}. ${hospede}`);
+        });
+    }
+}
 
 function fazerReserva() {
     let valorDiaria = parseFloat(prompt("Qual o valor padrão da diária?"));
 
     if (isNaN(valorDiaria) || valorDiaria <= 0) {
         alert("Valor inválido.");
-        fazerReserva(); 
+        fazerReserva();
         return;
     }
 
@@ -135,6 +165,7 @@ function main() {
 }
 
 main();
+
 
 
 
