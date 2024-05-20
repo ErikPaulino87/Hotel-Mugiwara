@@ -1,4 +1,4 @@
-let nomeHotel = "Hotel Mugiwara";
+let nomeHotel = "Villa Serenity Fernandes";
 const senhaCorreta = "2678";
 let quartos = new Array(20).fill(false);
 var lista_hospedes = [];
@@ -273,7 +273,7 @@ function sair() {
 }
 
 function organizarEvento() {
-    let nomeHotel = "Hotel Mugiwara";
+    let nomeHotel = "Villa Serenity Fernandes";
 
     function verificarCapacidade(convidados) {
         if (convidados <= 0 || convidados > 350) {
